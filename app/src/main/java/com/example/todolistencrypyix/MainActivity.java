@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private TaskDataBase taskDataBase;
     private List<TaskModel> taskModel;
+   // private Button edit;
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,6 @@ viewModel=new ViewModelProvider(this).get(ViewModel.class);
         recycle = findViewById(R.id.recycle);
         checkBox=findViewById(R.id.checkBox);
         textView=findViewById(R.id.textView);
-
 
         //Anamiation
 
@@ -151,15 +152,31 @@ viewModel=new ViewModelProvider(this).get(ViewModel.class);
                 // below line is use to attach this to recycler view.
 
 
+/*
+        if (edit != null) {
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RecyclerView recyclerView = findViewById(R.id.recycle);
+                    int position = recyclerView.getChildLayoutPosition(v);
+                    TaskModel model = adapter.getTASKAt(position);
+
+                    Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                    intent.putExtra(AddActivity.EXTRA_ID, model.getId());
+                    intent.putExtra(AddActivity.EXTRA_TITLE, model.getTitleTask());
+                    intent.putExtra(AddActivity.EXTRA_DESCRIPTION, model.getTaskDescription());
+                    // below line is to start a new activity and
+                    // adding a edit course constant.
+                    startActivityForResult(intent, EDIT_TASK_REQUEST);
+                }
+            });
+        }*/
 
 
 
         adapter.setOnItemClickListener(new AdapterTask.OnItemClickListener() {
             @Override
             public void onItemClick(TaskModel model) {
-                // after clicking on item of recycler view
-                // we are opening a new activity and passing
-                // a data to our activity.
                 Intent intent = new Intent(MainActivity.this, AddActivity.class);
                 intent.putExtra(AddActivity.EXTRA_ID,model.getId());
                 intent.putExtra(AddActivity.EXTRA_TITLE, model.getTitleTask());
@@ -169,6 +186,8 @@ viewModel=new ViewModelProvider(this).get(ViewModel.class);
                 startActivityForResult(intent, EDIT_TASK_REQUEST);
             }
         });
+
+
     }
 
     @Override

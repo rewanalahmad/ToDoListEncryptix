@@ -3,6 +3,7 @@ package com.example.todolistencrypyix;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -79,6 +80,7 @@ public class AdapterTask extends ListAdapter<TaskModel,AdapterTask.TaskHolder> {
             };
 
     public TaskModel getTASKAt(int position) {
+
         return getItem(position);
     }
 
@@ -86,6 +88,7 @@ public class AdapterTask extends ListAdapter<TaskModel,AdapterTask.TaskHolder> {
 
         TextView title, description;
         CheckBox checkBox;
+        Button edit;
 
         public TaskHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +96,8 @@ public class AdapterTask extends ListAdapter<TaskModel,AdapterTask.TaskHolder> {
             title = itemView.findViewById(R.id.titleview);
             description = itemView.findViewById(R.id.descview);
             checkBox = itemView.findViewById(R.id.checkBox);
+
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
